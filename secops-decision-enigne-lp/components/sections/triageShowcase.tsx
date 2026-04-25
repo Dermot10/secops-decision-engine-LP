@@ -1,7 +1,7 @@
-'use client'
+"use client";
 import { useEffect, useRef, useState } from 'react'
 import { signals } from '@/data/signals'
-import { SignalRow } from '@/components/ui/signalRow'
+import { SignalRow } from '@/components/ui/SignalRow'
 
 export default function TriageShowcase() {
   const [confidence, setConfidence] = useState(0)
@@ -83,7 +83,7 @@ export default function TriageShowcase() {
         <div className="section-label">explainability first</div>
         <h2>Every decision<br /><em>fully explained</em></h2>
         <p>
-          Sentinel doesn&apos;t just flag threats — it shows you exactly why. Every triage decision comes with the signals that contributed, the confidence score, and an AI-generated summary your team can act on immediately.
+          Obsidian Blue doesn&apos;t just flag threats — it shows you exactly why. Every triage decision comes with the signals that contributed, the confidence score, and an AI-generated summary your team can act on immediately.
         </p>
         <ul className="feature-list">
           {[

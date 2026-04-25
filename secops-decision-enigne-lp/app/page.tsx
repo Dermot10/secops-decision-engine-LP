@@ -1,27 +1,21 @@
-import Background from '@/components/effects/background'
-import Cursor from '@/components/effects/cursor'
-import Navbar from '@/components/sections/navbar'
-import Hero from '@/components/sections/hero'
-import TriageShowcase from '@/components/sections/triageShowcase'
-import PainPoints from '@/components/sections/painPoints'
-import Pipeline from '@/components/sections/pipeline'
-import Stats from '@/components/sections/stats'
-import CTA from '@/components/sections/cta'
-import Footer from '@/components/sections/footer'
+import Navbar from "@/components/sections/Navbar";
+import Hero from "@/components/sections/Hero";
+import PainPoints from "@/components/sections/PainPoints";
+import TriageShowcase from "@/components/sections/TriageShowcase";
+import Pipeline from "@/components/sections/Pipeline";
+import CTA from "@/components/sections/CTA";
+import Footer from "@/components/sections/Footer";
 
 export default function Home() {
   return (
-    <>
-      <Cursor />
-      <Background />
+    <main style={{ background: "#06080c", minHeight: "100vh", color: "#e2e8f0" }}>
       <Navbar />
       <Hero />
-      <TriageShowcase />
       <PainPoints />
+      <TriageShowcase />
       <Pipeline />
-      <Stats />
       <CTA />
       <Footer />
-    </>
-  )
+    </main>
+  );
 }

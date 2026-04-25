@@ -1,3 +1,4 @@
+"use client";
 import { stats } from '@/data/stats'
 
 export default function Stats() {

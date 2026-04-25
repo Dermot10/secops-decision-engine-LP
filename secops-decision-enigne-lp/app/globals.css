@@ -233,7 +233,7 @@
 
   .hero-headline {
     font-family: var(--display);
-    font-size: clamp(52px, 7vw, 96px);
+    font-size: clamp(32px, 7vw, 58px);
     font-weight: 800;
     line-height: 1;
     letter-spacing: -3px;
@@ -882,7 +882,8 @@
   }
 
   .cta-section h2 {
-    font-size: clamp(40px, 5vw, 68px);
+    /* font-size: 40px !important; */
+    font-size: clamp(32px, 5vw, 68px);
     font-weight: 800;
     letter-spacing: -3px;
     line-height: 1.0;
