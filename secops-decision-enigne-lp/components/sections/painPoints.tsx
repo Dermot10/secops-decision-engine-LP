@@ -1,18 +1,28 @@
 "use client";
+import { useEffect, useState } from "react";
 import { painPoints } from "@/data/painPoints";
 
 export default function PainPoints() {
+  const [mobile, setMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+  
   return (
     <section
       id="problem"
       style={{
-        padding: "100px 40px",
+        padding: mobile ? "60px 24px" : "100px 40px",
         maxWidth: "1100px",
         margin: "0 auto",
       }}
     >
       {/* Header */}
-      <div style={{ marginBottom: "64px" }}>
+      <div style={{ marginBottom: mobile ? "40px" : "64px" }}>
         <div
           style={{
             fontFamily: "'IBM Plex Mono', monospace",
@@ -34,7 +44,7 @@ export default function PainPoints() {
         >
           You know the risk.
           <br />
-          <span style={{ color: "#2e3d52" }}>Nothing's changed.</span>
+          <span style={{ color: "#2e3d52" }}>AI has changed the game</span>
         </h2>
       </div>
 
@@ -42,7 +52,7 @@ export default function PainPoints() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(320px, 1fr))",
+          gridTemplateColumns: mobile ? "1fr" : "repeat(auto-fill, minmax(320px, 1fr))",
           gap: "1px",
           background: "#1e2a3a",
           border: "1px solid #1e2a3a",

@@ -1,56 +1,42 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Cursor() {
+  const [pos, setPos] = useState({ x: -20, y: -20 });
+  const [isText, setIsText] = useState(false);
+  const [isPointer, setIsPointer] = useState(false);
+
   useEffect(() => {
-    const cursor = document.getElementById("cursor");
-    const ring = document.getElementById("cursorRing");
-
-    let mx = 0, my = 0, rx = 0, ry = 0;
-
     const move = (e: MouseEvent) => {
-      mx = e.clientX;
-      my = e.clientY;
-      if (cursor) {
-        cursor.style.left = mx + "px";
-        cursor.style.top = my + "px";
-      }
+      setPos({ x: e.clientX, y: e.clientY });
+      const el = document.elementFromPoint(e.clientX, e.clientY);
+      const tag = el?.tagName?.toLowerCase();
+      const isInput = tag === "input" || tag === "textarea";
+      const isBtn = tag === "button" || tag === "a" || (el as HTMLElement)?.style?.cursor === "pointer";
+      setIsText(isInput);
+      setIsPointer(isBtn && !isInput);
     };
-
-    document.addEventListener("mousemove", move);
-
-    function anim() {
-      rx += (mx - rx) * 0.12;
-      ry += (my - ry) * 0.12;
-      if (ring) {
-        ring.style.left = rx + "px";
-        ring.style.top = ry + "px";
-      }
-      requestAnimationFrame(anim);
-    }
-    anim();
-
-    const interactive = document.querySelectorAll("button, a, input");
-
-    interactive.forEach(el => {
-      el.addEventListener("mouseenter", () => {
-        if (!ring) return;
-        ring.style.width = "48px";
-        ring.style.height = "48px";
-      });
-      el.addEventListener("mouseleave", () => {
-        if (!ring) return;
-        ring.style.width = "32px";
-        ring.style.height = "32px";
-      });
-    });
-
+    window.addEventListener("mousemove", move);
+    return () => window.removeEventListener("mousemove", move);
   }, []);
 
   return (
-    <>
-      <div className="cursor" id="cursor" />
-      <div className="cursor-ring" id="cursorRing" />
-    </>
+    <div
+      style={{
+        position: "fixed",
+        top: pos.y,
+        left: pos.x,
+        width: isText ? "2px" : isPointer ? "10px" : "8px",
+        height: isText ? "18px" : isPointer ? "10px" : "8px",
+        background: "#38bdf8",
+        borderRadius: isText ? "1px" : "50%",
+        transform: isText ? "translate(-50%, -50%)" : "translate(-50%, -50%)",
+        pointerEvents: "none",
+        zIndex: 99999,
+        opacity: 0.9,
+        boxShadow: isPointer ? "0 0 10px rgba(56,189,248,0.6)" : "0 0 6px rgba(56,189,248,0.4)",
+        transition: "width 0.1s ease, height 0.1s ease, border-radius 0.1s ease",
+      }}
+    />
   );
 }

@@ -36,7 +36,7 @@ export default function TriageShowcase() {
               <div className="card-dot dot-amber" />
               <div className="card-dot dot-green" />
             </div>
-            <span className="card-title">sentinel / triage-result / alert_id: a594966a</span>
+            <span className="card-title">Obsidian Blue / triage-result / alert_id: a594966a</span>
           </div>
           <div className="card-body">
             <div className="decision-badge">
@@ -83,11 +83,11 @@ export default function TriageShowcase() {
         <div className="section-label">explainability first</div>
         <h2>Every decision<br /><em>fully explained</em></h2>
         <p>
-          Obsidian Blue doesn&apos;t just flag threats — it shows you exactly why. Every triage decision comes with the signals that contributed, the confidence score, and an AI-generated summary your team can act on immediately.
+          Obsidian Blue doesn&apos;t just flag threats — it shows you exactly why and up-skills you. Every triage decision comes with the signals that contributed, the confidence score, and an AI-generated summary your team can act on immediately.
         </p>
         <ul className="feature-list">
           {[
-            { icon: '⚡', cls: 'fi-blue', title: 'Three-source enrichment in parallel', desc: 'AbuseIPDB, VirusTotal, and GreyNoise queried simultaneously — results in under 500ms.' },
+            { icon: '⚡', cls: 'fi-blue', title: 'Multi-source, enrichment intel operating in parallel', desc: 'E.g AbuseIPDB, VirusTotal, and GreyNoise queried simultaneously — results in under 500ms.' },
             { icon: '🎯', cls: 'fi-teal', title: 'Deterministic rules before AI', desc: 'Clear-cut cases resolved instantly. LLM called only for ambiguous signals — keeping costs low and speed high.' },
             { icon: '🔒', cls: 'fi-red', title: 'AI reliability layer', desc: 'Confidence thresholds, fallback logic, and full audit trail. No black box decisions.' },
             { icon: '📋', cls: 'fi-amber', title: 'Human override with feedback loop', desc: 'Analyst decisions feed back into detection quality. The system gets smarter over time.' },

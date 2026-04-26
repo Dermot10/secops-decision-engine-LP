@@ -31,7 +31,10 @@
     --serif: 'Instrument Serif', serif;
   }
 
-  html { scroll-behavior: smooth; }
+  html { 
+    scroll-behavior: smooth; 
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Ccircle cx='4' cy='4' r='3' fill='%2338bdf8' opacity='0.8'/%3E%3C/svg%3E") 4 4, default;
+  }
 
   body {
     background: var(--bg);
@@ -189,6 +192,25 @@
   }
   .nav-cta:hover { background: var(--accent2); transform: translateY(-1px); }
 
+  /* cursor overide */
+  html, body {
+    scroll-behavior: smooth;
+  }
+
+  * {
+    cursor: none !important;
+  }
+
+  a, button {
+    cursor: none !important;
+  }
+
+  input, textarea {
+    cursor: none !important;
+    caret-color: #38bdf8;
+  }
+  
+
   /* Hero */
   .hero {
     position: relative;
@@ -231,9 +253,19 @@
     50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(59,130,246,0); }
   }
 
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.4; transform: scale(0.85); }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
   .hero-headline {
     font-family: var(--display);
-    font-size: clamp(32px, 7vw, 58px);
+    font-size: clamp(28px, 5vw, 42px);
     font-weight: 800;
     line-height: 1;
     letter-spacing: -3px;
@@ -1111,3 +1143,5 @@
     .cta-section { padding: 80px 24px; }
     footer { flex-direction: column; gap: 20px; text-align: center; padding: 32px 24px; }
   }
+
+

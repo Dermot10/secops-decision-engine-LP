@@ -1,24 +1,44 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { handleSignup } from "@/lib/useSignup";
 import Toast from "@/components/ui/Toast";
+
 
 export default function Hero() {
   const [email, setEmail]       = useState("");
   const [showToast, setShowToast] = useState(false);
   const [error, setError]       = useState(false);
+  const [mobile, setMobile] = useState(false);
 
-  const submit = () => {
-    const res = handleSignup(email);
-    if (res.error) {
-      setError(true);
-      setTimeout(() => setError(false), 2000);
-      return;
-    }
+  const submit = async () => {
+    console.log("submit fired, email:", email);
+  
+  if (!email) {
+    console.log("no email");
+    return;
+  }
+
+  console.log("calling handleSignup...");
+  const res = await handleSignup(email);
+  console.log("handleSignup result:", res);
+
+  if (res.error) {
+    console.log("error:", res.error);
+    setError(true);
+    setTimeout(() => setError(false), 2000);
+    return;
+  }
     setEmail("");
     setShowToast(true);
     setTimeout(() => setShowToast(false), 4000);
   };
+
+  useEffect(() => {
+    const check = () => setMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   return (
     <>
@@ -29,7 +49,7 @@ export default function Hero() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          padding: "120px 40px 80px",
+          padding: mobile ? "100px 24px 60px" : "120px 40px 80px",
           textAlign: "center",
           position: "relative",
         }}
@@ -108,8 +128,7 @@ export default function Hero() {
           }}
         >
           Detection-as-code, AI-assisted triage, and threat intelligence
-          for developer-led teams who can't justify a security hire —
-          and shouldn't have to.
+          for developer-led teams who can't justify a security hire yet
         </p>
 
         {/* Problem hook */}
@@ -126,7 +145,14 @@ export default function Hero() {
         </p>
 
         {/* Form */}
-        <div style={{ display: "flex", gap: "0", maxWidth: "460px", width: "100%" }}>
+        <div style={{ 
+            display: "flex",
+            flexDirection: mobile ? "column" : "row",
+            gap: mobile ? "8px" : "0",
+            maxWidth: "460px",
+            width: "100%",
+            cursor: "default",
+          }}>
           <input
             id="waitlist-input"
             type="email"
@@ -140,18 +166,35 @@ export default function Hero() {
               fontSize: "13px",
               padding: "12px 16px",
               background: "rgba(13, 17, 23, 0.8)",
-              border: error ? "1px solid #ff4444" : "1px solid #243040",
-              borderRight: "none",
-              borderRadius: "4px 0 0 4px",
+              borderTop: error ? "1px solid #ff4444" : "1px solid #243040",
+              borderBottom: error ? "1px solid #ff4444" : "1px solid #243040",
+              borderLeft: error ? "1px solid #ff4444" : "1px solid #243040",
+              borderRight: mobile ? (error ? "1px solid #ff4444" : "1px solid #243040") : "none",
+              borderRadius: mobile ? "4px" : "4px 0 0 4px",
               color: "#e2e8f0",
               outline: "none",
               transition: "border-color 0.15s ease",
+              width: "100%",
+              cursor: "text",
+              caretColor: "#38bdf8",
             }}
             onFocus={(e) => {
-              if (!error)(e.target as HTMLElement).style.borderColor = "#38bdf8";
+              if (!error) {
+                const el = e.target as HTMLInputElement;
+                el.style.borderTop = "1px solid #38bdf8";
+                el.style.borderBottom = "1px solid #38bdf8";
+                el.style.borderLeft = "1px solid #38bdf8";
+                if (mobile) el.style.borderRight = "1px solid #38bdf8";
+              }
             }}
             onBlur={(e) => {
-              if (!error)(e.target as HTMLElement).style.borderColor = "#243040";
+              if (!error) {
+                const el = e.target as HTMLInputElement;
+                el.style.borderTop = "1px solid #243040";
+                el.style.borderBottom = "1px solid #243040";
+                el.style.borderLeft = "1px solid #243040";
+                if (mobile) el.style.borderRight = "1px solid #243040";
+              }
             }}
           />
           <button
@@ -163,7 +206,7 @@ export default function Hero() {
               background: "#38bdf8",
               color: "#06080c",
               border: "none",
-              borderRadius: "0 4px 4px 0",
+              borderRadius: mobile ? "4px" : "0 4px 4px 0",
               cursor: "pointer",
               whiteSpace: "nowrap",
               letterSpacing: "0.04em",
