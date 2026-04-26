@@ -6,7 +6,7 @@ import TriageShowcase from "@/components/sections/TriageShowcase";
 import Pipeline from "@/components/sections/Pipeline";
 import CTA from "@/components/sections/CTA";
 import Footer from "@/components/sections/Footer";
-import Cursor from "@/components/effects/cursor";
+import Cursor from "@/components/effects/Cursor";
 
 export default function Home() {
   return (
