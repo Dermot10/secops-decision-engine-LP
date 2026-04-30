@@ -25,14 +25,14 @@ export const pipelineSteps: PipelineStep[] = [
     num: '03',
     title: 'Alert Pipeline',
     outcome: 'Nothing gets missed',
-    description: 'Every matching event queued with retry logic, dead letter handling, and a full audit trail. No silent failures, no dropped alerts.',
+    description: 'Every matching event processed with a full audit trail. No silent failures, no dropped alerts.',
     status: 'beta'
   },
   {
     num: '04',
     title: 'Threat Intel',
     outcome: 'Context on every indicator',
-    description: 'IPs enriched against AbuseIPDB, VirusTotal, and GreyNoise in parallel. Embedded in every triage result — not a separate lookup.',
+    description: 'IoCs enriched against various sources of intelligence in parallel to provide context to your detections. Embedded in every triage result.',
     status: 'beta'
   },
   {
