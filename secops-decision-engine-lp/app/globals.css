@@ -31,6 +31,24 @@
     --serif: 'Instrument Serif', serif;
   }
 
+  .light {
+    --bg: #ffffff;
+    --bg2: #f8fafc;
+    --bg3: #f1f5f9;
+    --surface: #ffffff;
+    --surface2: #f1f5f9;
+    --border: rgba(0,0,0,0.08);
+    --border2: rgba(0,0,0,0.12);
+
+    --text: #0f172a;
+    --text2: #475569;
+    --text3: #94a3b8;
+
+    --accent: #2563eb;
+    --accent2: #3b82f6;
+    --accent3: #60a5fa;
+  }
+
   html { 
     scroll-behavior: smooth; 
     cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Ccircle cx='4' cy='4' r='3' fill='%2338bdf8' opacity='0.8'/%3E%3C/svg%3E") 4 4, default;

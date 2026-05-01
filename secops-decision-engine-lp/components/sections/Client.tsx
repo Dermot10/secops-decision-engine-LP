@@ -15,7 +15,7 @@ export default function HomeClient() {
   const toast = useToast();
 
   return (
-    <main style={{ background: "#06080c", minHeight: "100vh", color: "#e2e8f0" }}>
+    <main>
       <Cursor />
       <Navbar />
       <Hero toast={toast} />

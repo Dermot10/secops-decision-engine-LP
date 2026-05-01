@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import ThemeToggle from "../navbar/ThemeToggle";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -76,29 +77,32 @@ export default function Navbar() {
       </ul>
 
       {/* CTA */}
-      <button
-        onClick={() => document.getElementById("waitlist-input")?.focus()}
-        style={{
-          fontFamily: "'IBM Plex Mono', monospace",
-          fontSize: "11px", fontWeight: 600,
-          padding: "8px 18px", borderRadius: "4px",
-          background: "transparent",
-          border: "1px solid rgba(56, 189, 248, 0.4)",
-          color: "#38bdf8", cursor: "pointer",
-          letterSpacing: "0.04em",
-          transition: "all 0.15s ease",
-        }}
-        onMouseEnter={(e) => {
-          (e.currentTarget as HTMLElement).style.background = "rgba(56, 189, 248, 0.08)";
-          (e.currentTarget as HTMLElement).style.borderColor = "#38bdf8";
-        }}
-        onMouseLeave={(e) => {
-          (e.currentTarget as HTMLElement).style.background = "transparent";
-          (e.currentTarget as HTMLElement).style.borderColor = "rgba(56, 189, 248, 0.4)";
-        }}
-      >
-        Early access →
-      </button>
+      <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+        <ThemeToggle />
+          <button
+            onClick={() => document.getElementById("waitlist-input")?.focus()}
+            style={{
+              fontFamily: "'IBM Plex Mono', monospace",
+              fontSize: "11px", fontWeight: 600,
+              padding: "8px 18px", borderRadius: "4px",
+              background: "transparent",
+              border: "1px solid rgba(56, 189, 248, 0.4)",
+              color: "var(--accent)", cursor: "pointer",
+              letterSpacing: "0.04em",
+              transition: "all 0.15s ease",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLElement).style.background = "rgba(56, 189, 248, 0.08)";
+              (e.currentTarget as HTMLElement).style.borderColor = "#38bdf8";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLElement).style.background = "transparent";
+              (e.currentTarget as HTMLElement).style.borderColor = "rgba(56, 189, 248, 0.4)";
+            }}
+          >
+            Early access →
+          </button>
+        </div>
     </nav>
   );
 }
